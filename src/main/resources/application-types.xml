@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="data" format="xml">
+      <types:example format="xml" element="CATALOG" location="examples/data.xml"/>
+    </types:type>
+    <types:type name="new" format="json">
+      <types:shape format="weave" example="examples/new.json"><![CDATA[%dw 2.0
+
+type new = Array<{|  TITLE: String,   ARTIST: String,   COUNTRY: String,   COMPANY: String,   PRICE: String,   YEAR: String|}> {"example": "[{\\\"TITLE\\\":\\\"dill diya galla\\\",\\\"ARTIST\\\":\\\"Arijit singh\\\",\\\"COUNTRY\\\":\\\"India\\\",\\\"COMPANY\\\":\\\"tseries\\\",\\\"PRICE\\\":\\\"10.90\\\",\\\"YEAR\\\":\\\"2018\\\"},{\\\"TITLE\\\":\\\"Saiyara\\\",\\\"ARTIST\\\":\\\"Atif Aslam\\\",\\\"COUNTRY\\\":\\\"Uk\\\",\\\"COMPANY\\\":\\\"Records\\\",\\\"PRICE\\\":\\\"9.90\\\",\\\"YEAR\\\":\\\"2015\\\"},{\\\"TITLE\\\":\\\"Khairiyat\\\",\\\"ARTIST\\\":\\\"Sonu nigam\\\",\\\"COUNTRY\\\":\\\"india\\\",\\\"COMPANY\\\":\\\"radio\\\",\\\"PRICE\\\":\\\"9.90\\\",\\\"YEAR\\\":\\\"2019\\\"},{\\\"TITLE\\\":\\\"all is well\\\",\\\"ARTIST\\\":\\\"Amir Khan\\\",\\\"COUNTRY\\\":\\\"pak\\\",\\\"COMPANY\\\":\\\"Virgin records\\\",\\\"PRICE\\\":\\\"10.20\\\",\\\"YEAR\\\":\\\"2012\\\"},{\\\"TITLE\\\":\\\"rockstar\\\",\\\"ARTIST\\\":\\\"kk\\\",\\\"COUNTRY\\\":\\\"india\\\",\\\"COMPANY\\\":\\\"Eros\\\",\\\"PRICE\\\":\\\"9.90\\\",\\\"YEAR\\\":\\\"2014\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="newq" format="json">
+      <types:shape format="weave" example="examples/new-1.json"><![CDATA[%dw 2.0
+
+type newq = Array<{|  CUP: String,   NAME: String,   BORNCOU: String,   WORKING: String,   AMOUNT: String|}> {"example": "[{\\\"CUP\\\":\\\"dill diya galla\\\",\\\"NAME\\\":\\\"Arijit singh\\\",\\\"BORNCOU\\\":\\\"India\\\",\\\"WORKING\\\":\\\"tseries\\\",\\\"AMOUNT\\\":\\\"10.90\\\"},{\\\"CUP\\\":\\\"Saiyara\\\",\\\"NAME\\\":\\\"Atif Aslam\\\",\\\"BORNCOU\\\":\\\"Uk\\\",\\\"WORKING\\\":\\\"Records\\\",\\\"AMOUNT\\\":\\\"9.90\\\"},{\\\"CUP\\\":\\\"Khairiyat\\\",\\\"NAME\\\":\\\"Sonu nigam\\\",\\\"BORNCOU\\\":\\\"india\\\",\\\"WORKING\\\":\\\"radio\\\",\\\"AMOUNT\\\":\\\"9.90\\\"},{\\\"CUP\\\":\\\"all is well\\\",\\\"NAME\\\":\\\"Amir Khan\\\",\\\"BORNCOU\\\":\\\"pak\\\",\\\"WORKING\\\":\\\"Virgin records\\\",\\\"AMOUNT\\\":\\\"10.20\\\"},{\\\"CUP\\\":\\\"rockstar\\\",\\\"NAME\\\":\\\"kk\\\",\\\"BORNCOU\\\":\\\"india\\\",\\\"WORKING\\\":\\\"Eros\\\",\\\"AMOUNT\\\":\\\"9.90\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#7d5e4ea0-a3d7-44de-a8d8-2b6b5c2e2513">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="data"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

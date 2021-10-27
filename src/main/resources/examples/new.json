@@ -1,0 +1,42 @@
+[
+   {
+      "TITLE": "dill diya galla",
+      "ARTIST": "Arijit singh",
+      "COUNTRY": "India",
+      "COMPANY": "tseries",
+      "PRICE": "10.90",
+      "YEAR": "2018"
+   },
+   {
+      "TITLE": "Saiyara",
+      "ARTIST": "Atif Aslam",
+      "COUNTRY": "Uk",
+      "COMPANY": "Records",
+      "PRICE": "9.90",
+      "YEAR": "2015"
+   },
+   {
+      "TITLE": "Khairiyat",
+      "ARTIST": "Sonu nigam",
+      "COUNTRY": "india",
+      "COMPANY": "radio",
+      "PRICE": "9.90",
+      "YEAR": "2019"
+   },
+   {
+      "TITLE": "all is well",
+      "ARTIST": "Amir Khan",
+      "COUNTRY": "pak",
+      "COMPANY": "Virgin records",
+      "PRICE": "10.20",
+      "YEAR": "2012"
+   },
+   {
+      "TITLE": "rockstar",
+      "ARTIST": "kk",
+      "COUNTRY": "india",
+      "COMPANY": "Eros",
+      "PRICE": "9.90",
+      "YEAR": "2014"
+   }
+]

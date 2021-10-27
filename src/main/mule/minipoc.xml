@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="9044d65b-35c3-4f4c-b616-1d3d328aa306" >
+		<http:listener-connection host="0.0.0.0" port="8094" />
+	</http:listener-config>
+	<vm:config name="VM_Config" doc:name="VM Config" doc:id="0fb9dd74-cf14-4533-a4a1-61968ac5536f" >
+		<vm:queues >
+			<vm:queue queueName="VMM" />
+		</vm:queues>
+	</vm:config>
+	<flow name="minipocFlow" doc:id="ffe71cd6-0fab-4069-9729-a8f94c0d4b95" >
+		<http:listener doc:name="Listener" doc:id="11b6a5c6-0395-4bbf-a7c3-3b86cca93bac" config-ref="HTTP_Listener_config" path="/poc"/>
+		<ee:transform doc:name="Transform Message" doc:id="7d5e4ea0-a3d7-44de-a8d8-2b6b5c2e2513">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-payload value="#[payload.CATALOG.*CD]" doc:name="Set Payload" doc:id="dbafe306-64c4-4ed9-8c23-611c08eba6af" />
+		<vm:publish doc:name="Publish" doc:id="9b78292e-0068-4128-a30f-1d8794b082ff" config-ref="VM_Config" queueName="VMM"/>
+	</flow>
+	<flow name="minipocFlow2" doc:id="42f1ac85-8e55-4916-942f-6fafd3b0a0a4" >
+		<vm:listener doc:name="Listener" doc:id="8282b233-a246-4ae0-bcf4-849574e7ebc5" config-ref="VM_Config" queueName="VMM"/>
+		<ee:transform doc:name="Transform Message" doc:id="ae92f30f-d36c-4def-81c4-85d410fc294a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="6294d5c4-6216-41ea-b6ad-06b5b698b2de" />
+		<file:move doc:name="Move" doc:id="09df938c-4d06-4338-95d7-bd20f3d7a346" />
+		<ee:transform doc:name="Transform Message" doc:id="cb2f7838-91d0-4015-b0c2-0a7a5ade1279" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<http:request method="GET" doc:name="Request" doc:id="1c1ab926-ea57-43b8-b652-a4fc2ea9b104" />
+	</flow>
+	<flow name="minipocFlow1" doc:id="cbbc050f-b867-41a6-b769-8044c9a32654" >
+		<http:listener doc:name="Listener" doc:id="c308f7c4-a08f-46f0-9861-e6f6e3be37b9" config-ref="HTTP_Listener_config" path="/poc1"/>
+		<ee:transform doc:name="Transform Message" doc:id="a6416028-527c-4da5-bc9a-d88a4fb76622">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/csv
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="5430985d-1171-485b-8d00-b7ca2a2e974d" />
+		<file:read doc:name="Read" doc:id="f8b99c6f-9b27-4fa7-8d0d-0dc5d6b61d4d" />
+	</flow>
+</mule>

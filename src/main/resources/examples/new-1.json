@@ -1,0 +1,37 @@
+[
+   {
+      "CUP":"dill diya galla",
+      "NAME":"Arijit singh",
+      "BORNCOU":"India",
+      "WORKING":"tseries",
+      "AMOUNT":"10.90"
+   },
+   {
+      "CUP":"Saiyara",
+      "NAME":"Atif Aslam",
+      "BORNCOU":"Uk",
+      "WORKING":"Records",
+      "AMOUNT":"9.90"
+   },
+   {
+      "CUP":"Khairiyat",
+      "NAME":"Sonu nigam",
+      "BORNCOU":"india",
+      "WORKING":"radio",
+      "AMOUNT":"9.90"
+   },
+   {
+      "CUP":"all is well",
+      "NAME":"Amir Khan",
+      "BORNCOU":"pak",
+      "WORKING":"Virgin records",
+      "AMOUNT":"10.20"
+   },
+   {
+      "CUP":"rockstar",
+      "NAME":"kk",
+      "BORNCOU":"india",
+      "WORKING":"Eros",
+      "AMOUNT":"9.90"
+   }
+]
